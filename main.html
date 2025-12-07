@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ArtFocus — Мастерская Деда Мороза</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet" />
+<style>
+:root {
+    --dark-green: #1B5E20;
+    --muted-yellow: #FF9800;
+    --soft-yellow: #FFB74D;
+    --black: #0D0D0D;
+    --white: #FFFFFF;
+    --gray: #222222;
+    --light-gray: #333333;
+    --accent-red: #D32F2F;
+    --accent-blue: #1976D2;
+    --background: #151515;
+    --text-light: #E0E0E0;
+    --text-medium: #B0B0B0;
+    --vk-blue: #4C75A3;
+    --vk-blue-hover: #5a82b4;
+}
+
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-light);
+    background-color: var(--background);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(27, 94, 32, 0.12) 0%, transparent 25%),
+        radial-gradient(circle at 80% 20%, rgba(255, 152, 0, 0.12) 0%, transparent 25%);
+}
+
+/* Заголовки */
+h1, h2, h3, h4 {
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    color: var(--white);
+}
+
+/* Контейнер */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Шапка */
+header {
+    background-color: rgba(34, 34, 34, 0.98);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--muted-yellow);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    background: linear-gradient(45deg, var(--muted-yellow), var(--soft-yellow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+    transition: all 0.3s;
+    position: relative;
+    padding: 5px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+nav a:hover {
+    color: var(--muted-yellow);
+}
+
+nav a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--muted-yellow);
+    bottom: -3px;
+    left: 0;
+    transition: width 0.3s;
+}
+
+nav a:hover:after {
+    width: 100%;
+}
+
+.vk-btn {
+    background-color: var(--vk-blue);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 152, 0, 0.4);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(76, 117, 163, 0.3);
+}
+
+.vk-btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--vk-blue-hover);
+    box-shadow: 0 6px 15px rgba(76, 117, 163, 0.4);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--muted-yellow);
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    color: var(--muted-yellow);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.mobile-menu-btn:hover {
+    background-color: rgba(255, 152, 0, 0.15);
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background-color: var(--gray);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    padding: 20px;
+    z-index: 999;
+    border-top: 2px solid var(--muted-yellow);
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu a {
+    padding: 15px;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.mobile-menu a:hover {
+    background-color: rgba(255, 152, 0, 0.15);
+    color: var(--muted-yellow);
+    padding-left: 25px;
+}
+
+/* Герой */
+.hero {
+    padding: 140px 0 60px;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(27, 94, 32, 0.15) 48%, rgba(27, 94, 32, 0.15) 52%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(255, 152, 0, 0.15) 48%, rgba(255, 152, 0, 0.15) 52%, transparent 52%);
+    background-size: 80px 80px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(255, 152, 0, 0.3);
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+}
+
+.hero-text {
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.hero-title span {
+    background: linear-gradient(45deg, var(--muted-yellow), var(--soft-yellow), var(--dark-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: block;
+}
+
+.hero-title:after {
+    content: "МАСТЕРСКАЯ!";
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.04);
+    z-index: -1;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 5px;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: var(--text-light);
+    font-weight: 500;
+    background-color: rgba(34, 34, 34, 0.85);
+    padding: 20px;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    border-radius: 8px;
+    position: relative;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.hero-description:before {
+    content: "НОВОГОДНЯЯ!";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background-color: var(--muted-yellow);
+    color: var(--black);
+    padding: 4px 12px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.9rem;
+    transform: rotate(-3deg);
+    border-radius: 4px;
+    font-weight: 900;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+    background-color: var(--dark-green);
+    color: var(--white);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #2E7D32;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(27, 94, 32, 0.4);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 152, 0, 0.15);
+    color: var(--muted-yellow);
+    border: 1px solid rgba(255, 152, 0, 0.4);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 152, 0, 0.25);
+    transform: translateY(-3px);
+    color: var(--soft-yellow);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+}
+
+.btn-vk {
+    background-color: var(--vk-blue);
+    color: var(--white);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.btn-vk:hover {
+    background-color: var(--vk-blue-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 117, 163, 0.4);
+}
+
+.hero-visual {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-image {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 2;
+    background-color: var(--gray);
+    border: 1px solid rgba(255, 152, 0, 0.2);
+}
+
+.pop-art-element {
+    position: absolute;
+    z-index: 1;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.5rem;
+    color: var(--black);
+    transform: rotate(-15deg);
+    opacity: 0.8;
+    font-weight: 900;
+}
+
+.pop-art-element:nth-child(1) {
+    top: -20px;
+    right: 20px;
+    color: var(--muted-yellow);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+.pop-art-element:nth-child(2) {
+    bottom: 20px;
+    left: -20px;
+    color: var(--dark-green);
+    transform: rotate(15deg);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+/* Sections */
+.section {
+    padding: 60px 0;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.section-title span {
+    color: var(--muted-yellow);
+    position: relative;
+    z-index: 2;
+}
+
+.section-title:after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 5px;
+    background: linear-gradient(90deg, transparent, var(--muted-yellow), transparent);
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* Activities grid */
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.activity-card {
+    background-color: var(--gray);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.activity-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.35);
+    border-color: rgba(255, 152, 0, 0.4);
+}
+
+.activity-icon {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--white);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0,0,0,0.3);
+}
+
+.activity-1 .activity-icon { background-color: rgba(27, 94, 32, 0.3); }
+.activity-2 .activity-icon { background-color: rgba(255, 152, 0, 0.3); }
+.activity-3 .activity-icon { background-color: rgba(255, 183, 77, 0.3); }
+.activity-4 .activity-icon { background-color: rgba(211, 47, 47, 0.3); }
+.activity-5 .activity-icon { background-color: rgba(25, 118, 210, 0.3); }
+.activity-6 .activity-icon { background-color: rgba(255, 152, 0, 0.3); }
+
+.activity-card:before {
+    content: "НОВОЕ!";
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    background-color: var(--muted-yellow);
+    color: var(--black);
+    padding: 5px 14px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.8rem;
+    transform: rotate(5deg);
+    border-radius: 4px;
+    z-index: 3;
+    font-weight: 900;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.activity-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gray);
+}
+
+.activity-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--muted-yellow);
+}
+
+.activity-description {
+    color: var(--text-medium);
+    margin-bottom: 20px;
+    flex-grow: 1;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.activity-link {
+    color: var(--muted-yellow);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.activity-link:hover {
+    color: var(--soft-yellow);
+    gap: 12px;
+}
+
+/* Calendar section */
+.calendar-section {
+    background-color: rgba(27, 94, 32, 0.08);
+    border-top: 3px solid rgba(255, 152, 0, 0.2);
+    border-bottom: 3px solid rgba(255, 152, 0, 0.2);
+}
+
+.calendar-container {
+    background-color: var(--gray);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255, 152, 0, 0.2);
+    position: relative;
+}
+
+.calendar-container:before {
+    content: "РАСПИСАНИЕ!";
+    position: absolute;
+    top: -20px;
+    right: 30px;
+    background-color: var(--dark-green);
+    color: var(--muted-yellow);
+    padding: 8px 18px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 152, 0, 0.4);
+    font-weight: 900;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(255, 152, 0, 0.3);
+    padding-bottom: 15px;
+}
+
+.calendar-header h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--muted-yellow);
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.calendar-nav-btn {
+    background-color: rgba(255, 152, 0, 0.15);
+    border: 1px solid rgba(255, 152, 0, 0.4);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+    color: var(--muted-yellow);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.calendar-nav-btn:hover {
+    background-color: rgba(255, 152, 0, 0.25);
+    transform: translateY(-2px);
+    color: var(--soft-yellow);
+    box-shadow: 0 5px 10px rgba(255, 152, 0, 0.2);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.event-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 152, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.event-card:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 5px,
+        rgba(255, 152, 0, 0.03) 5px,
+        rgba(255, 152, 0, 0.03) 10px
+    );
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 10px;
+}
+
+.event-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: var(--muted-yellow);
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.event-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-family: 'Archivo Black', sans-serif;
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    position: relative;
+    z-index: 2;
+}
+
+.event-info-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.event-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.event-price {
+    font-weight: 700;
+    color: var(--muted-yellow);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+}
+
+.book-btn {
+    background-color: rgba(27, 94, 32, 0.25);
+    color: var(--muted-yellow);
+    border: 1px solid rgba(255, 152, 0, 0.4);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.book-btn:hover {
+    background-color: rgba(27, 94, 32, 0.35);
+    color: var(--soft-yellow);
+    transform: translateY(-2px);
+    border-color: rgba(255, 152, 0, 0.5);
+    box-shadow: 0 5px 10px rgba(27, 94, 32, 0.2);
+}
+
+.book-btn-vk {
+    background-color: rgba(76, 117, 163, 0.25);
+    color: var(--white);
+    border: 1px solid rgba(76, 117, 163, 0.4);
+}
+
+.book-btn-vk:hover {
+    background-color: rgba(76, 117, 163, 0.35);
+    color: var(--white);
+    border-color: rgba(76, 117, 163, 0.5);
+    box-shadow: 0 5px 10px rgba(76, 117, 163, 0.2);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    padding: 15px;
+}
+
+.modal-content {
+    background-color: var(--gray);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    animation: modalFade 0.3s;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+@keyframes modalFade {
+    from { opacity: 0; transform: translateY(-30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted-yellow);
+    font-weight: bold;
+    transition: all 0.3s;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 152, 0, 0.15);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.close-modal:hover {
+    background-color: rgba(255, 152, 0, 0.25);
+    color: var(--soft-yellow);
+    transform: rotate(90deg);
+}
+
+.modal-title {
+    margin-bottom: 25px;
+    color: var(--muted-yellow);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(255, 152, 0, 0.3);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--muted-yellow);
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    transition: all 0.3s;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: rgba(255, 152, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.15);
+}
+
+.submit-booking {
+    width: 100%;
+    padding: 14px;
+    background-color: rgba(27, 94, 32, 0.25);
+    color: var(--muted-yellow);
+    border: 1px solid rgba(255, 152, 0, 0.4);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.submit-booking:hover {
+    background-color: rgba(27, 94, 32, 0.35);
+    color: var(--soft-yellow);
+    transform: translateY(-2px);
+    border-color: rgba(255, 152, 0, 0.5);
+    box-shadow: 0 6px 12px rgba(27, 94, 32, 0.25);
+}
+
+.submit-booking-vk {
+    background-color: rgba(76, 117, 163, 0.25);
+    color: var(--white);
+    border: 1px solid rgba(76, 117, 163, 0.4);
+}
+
+.submit-booking-vk:hover {
+    background-color: rgba(76, 117, 163, 0.35);
+    color: var(--white);
+    border-color: rgba(76, 117, 163, 0.5);
+    box-shadow: 0 6px 12px rgba(76, 117, 163, 0.25);
+}
+
+/* Footer */
+footer {
+    background-color: var(--gray);
+    color: var(--white);
+    padding: 50px 0 30px;
+    border-top: 3px solid rgba(255, 152, 0, 0.2);
+    position: relative;
+}
+
+footer:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--dark-green), var(--muted-yellow), var(--dark-green));
+    opacity: 0.6;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer-column h3 {
+    color: var(--muted-yellow);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-column h3:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark-green);
+    bottom: -5px;
+    left: 0;
+    opacity: 0.6;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.footer-logo .logo-icon {
+    color: var(--muted-yellow);
+}
+
+.footer-description {
+    color: var(--text-medium);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 0;
+}
+
+.footer-links li:before {
+    content: "→";
+    position: absolute;
+    left: -15px;
+    color: var(--muted-yellow);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.footer-links li:hover:before {
+    opacity: 1;
+    left: -10px;
+}
+
+.footer-links a {
+    color: var(--text-medium);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--muted-yellow);
+    padding-left: 5px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-medium);
+    font-size: 14px;
+}
+
+.contact-item i {
+    color: var(--muted-yellow);
+    width: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.social-link:hover {
+    background-color: rgba(255, 152, 0, 0.15);
+    transform: translateY(-3px);
+    color: var(--muted-yellow);
+    border-color: rgba(255, 152, 0, 0.3);
+    box-shadow: 0 5px 10px rgba(255, 152, 0, 0.2);
+}
+
+.social-link.vk {
+    background-color: rgba(76, 117, 163, 0.2);
+}
+
+.social-link.vk:hover {
+    background-color: rgba(76, 117, 163, 0.3);
+    color: var(--white);
+    border-color: rgba(76, 117, 163, 0.5);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: #777;
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Адаптация для мобильных */
+@media(max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    nav ul {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .hero {
+        padding: 120px 0 40px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-title:after {
+        font-size: 2.2rem;
+        bottom: -8px;
+    }
+    
+    .hero-description {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .calendar-container {
+        padding: 20px;
+    }
+    
+    .calendar-header h3 {
+        font-size: 1.4rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn {
+        justify-content: center;
+        padding: 12px 20px;
+    }
+    
+    .vk-btn span {
+        display: none;
+    }
+    
+    .vk-btn {
+        padding: 10px 15px;
+    }
+    
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 25px 20px;
+    }
+    
+    .logo-text {
+        font-size: 24px;
+    }
+    
+    .logo-image {
+        height: 35px;
+    }
+}
+
+@media(max-width: 576px) {
+    .hero-title {
+        font-size: 1.7rem;
+    }
+    
+    .hero-title:after {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .event-price {
+        font-size: 1.2rem;
+    }
+    
+    .book-btn {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+    
+    .event-title {
+        font-size: 1.1rem;
+    }
+}
+</style>
+</head>
+<body>
+<!-- Шапка -->
+<header>
+<div class="container">
+<div class="header-content">
+<a href="#" class="logo">
+<img src="photo_2024-04-03_18-01-57.jpg" alt="ArtFocus Logo" class="logo-image" />
+<span class="logo-text">ArtFocus</span>
+</a>
+<button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+<nav>
+<ul>
+<li><a href="#home">Главная</a></li>
+<li><a href="#activities">Направления</a></li>
+<li><a href="#calendar">Мероприятия</a></li>
+<li><a href="#booking">Запись</a></li>
+<li><a href="#contact">Контакты</a></li>
+</ul>
+</nav>
+<a href="https://vk.com/im/channels/-234355538" class="vk-btn" target="_blank">
+<i class="fab fa-vk"></i> <span>Написать в VK</span>
+</a>
+</div>
+</div>
+<!-- Моб. меню -->
+<div class="mobile-menu" id="mobileMenu">
+<a href="#home">Главная</a>
+<a href="#activities">Направления</a>
+<a href="#calendar">Мероприятия</a>
+<a href="#booking">Запись</a>
+<a href="#contact">Контакты</a>
+<a href="https://vk.com/im/channels/-234355538" class="vk-btn" target="_blank" style="justify-content: center; margin-top: 10px;">
+<i class="fab fa-vk"></i> Написать в VK
+</a>
+</div>
+</header>
+
+<!-- Герой -->
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-content">
+<div class="hero-text">
+<h1 class="hero-title">ArtFocus — <span>ТВОРЧЕСКОЕ ПРОСТРАНСТВО</span></h1>
+<p class="hero-description">Новогодние мастер-классы для детей и взрослых! Создайте своими руками волшебные подарки и украшения к празднику в нашей уютной творческой атмосфере.</p>
+<div class="hero-buttons">
+<a href="#calendar" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Выбрать мастер-класс</a>
+<a href="https://vk.com/im/channels/-234355538" class="btn btn-vk" target="_blank"><i class="fab fa-vk"></i> Записаться в VK</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="pop-art-element">🎄</div>
+<div class="pop-art-element">🎅</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Направления -->
+<section class="section" id="activities">
+<div class="container">
+<h2 class="section-title">Наши <span>направления</span></h2>
+<div class="activities-grid">
+<!-- Активность 1 -->
+<div class="activity-card activity-1">
+<div class="activity-icon">
+<i class="fas fa-paint-brush"></i>
+</div>
+<div class="activity-content">
+<h3 class="activity-title">🎄 Новогодние поделки</h3>
+<p class="activity-description">Создание елочных игрушек, открыток, венков и других праздничных украшений своими руками.</p>
+<a href="#calendar" class="activity-link">Посмотреть расписание <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+<!-- Активность 2 -->
+<div class="activity-card activity-2">
+<div class="activity-icon">
+<i class="fas fa-candy-cane"></i>
+</div>
+<div class="activity-content">
+<h3 class="activity-title">🎅 Детские мастер-классы</h3>
+<p class="activity-description">Творческие занятия для детей с использованием безопасных материалов. Развиваем воображение и мелкую моторику.</p>
+<a href="#calendar" class="activity-link">Выбрать занятие <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+<!-- Активность 3 -->
+<div class="activity-card activity-3">
+<div class="activity-icon">
+<i class="fas fa-wine-glass-alt"></i>
+</div>
+<div class="activity-content">
+<h3 class="activity-title">🥂 Взрослые мастер-классы</h3>
+<p class="activity-description">Творческие вечера с игристыми напитками. Расслабляющая атмосфера для создания праздничных украшений.</p>
+<a href="#calendar" class="activity-link">Посмотреть программу <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+<!-- Активность 4 -->
+<div class="activity-card activity-4">
+<div class="activity-icon">
+<i class="fas fa-birthday-cake"></i>
+</div>
+<div class="activity-content">
+<h3 class="activity-title">🎁 Праздничные мероприятия</h3>
+<p class="activity-description">Новогодние корпоративы, детские утренники, семейные праздники в творческой атмосфере.</p>
+<a href="#booking" class="activity-link">Заказать праздник <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+<!-- Активность 5 -->
+<div class="activity-card activity-5">
+<div class="activity-icon">
+<i class="fas fa-car"></i>
+</div>
+<div class="activity-content">
+<h3 class="activity-title">🚗 Выездные мастер-классы</h3>
+<p class="activity-description">Привезем новогоднее творчество к вам домой, в офис или школу. Все материалы предоставляем.</p>
+<a href="#booking" class="activity-link">Заказать выезд <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+<!-- Активность 6 -->
+<div class="activity-card activity-6">
+<div class="activity-icon">
+<i class="fas fa-gifts"></i>
+</div>
+<div class="activity-content">
+<h3 class="activity-title">🎀 Подарочные сертификаты</h3>
+<p class="activity-description">Подарите близким творческий опыт! Сертификаты на любые мастер-классы с красивым оформлением.</p>
+<a href="#booking" class="activity-link">Заказать сертификат <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Мероприятия -->
+<section class="section calendar-section" id="calendar">
+<div class="container">
+<h2 class="section-title">Расписание <span>мастерской</span></h2>
+<div class="calendar-container">
+<div class="calendar-header">
+<h3>Декабрь 2025</h3>
+<div class="calendar-nav">
+<button class="calendar-nav-btn" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+<button class="calendar-nav-btn" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+</div>
+</div>
+<div class="calendar-grid" id="eventsContainer"></div>
+</div>
+</div>
+</section>
+
+<!-- Модальное окно записи -->
+<div class="modal" id="bookingModal">
+<div class="modal-content">
+<button class="close-modal" id="closeModal">&times;</button>
+<h3 class="modal-title">Запись на мастер-класс</h3>
+<form id="bookingForm">
+<div class="form-group">
+<label for="eventName">Мероприятие</label>
+<input type="text" id="eventName" readonly />
+</div>
+<div class="form-group">
+<label for="userName">Ваше имя</label>
+<input type="text" id="userName" required />
+</div>
+<div class="form-group">
+<label for="userPhone">Номер телефона</label>
+<input type="tel" id="userPhone" required placeholder="+7 (999) 123-45-67" />
+</div>
+<div class="form-group">
+<label for="participants">Количество участников</label>
+<select id="participants" required>
+<option value="1">1 человек</option>
+<option value="2">2 человека</option>
+<option value="3">3 человека</option>
+<option value="4">4 человека</option>
+<option value="5">5+ человек</option>
+</select>
+</div>
+<button type="submit" class="submit-booking submit-booking-vk"><i class="fab fa-vk"></i> Записаться через VK</button>
+</form>
+</div>
+</div>
+
+<!-- Подвал -->
+<footer id="contact">
+<div class="container">
+<div class="footer-content">
+<!-- О нас -->
+<div class="footer-column">
+<a href="#" class="footer-logo">
+<i class="fas fa-palette logo-icon"></i>
+<span class="logo-text">ArtFocus</span>
+</a>
+<p class="footer-description">ArtFocus – это место, где каждый может почувствовать себя художником, игроком, зрителем и просто человеком, которому рады.</p>
+<div class="social-links">
+<a href="https://vk.com/im/channels/-234355538" class="social-link vk" target="_blank"><i class="fab fa-vk"></i></a>
+<a href="https://t.me/ArtFocus_studio" class="social-link"><i class="fab fa-telegram"></i></a>
+</div>
+</div>
+<!-- Меню -->
+<div class="footer-column">
+<h3>Меню</h3>
+<ul class="footer-links">
+<li><a href="#home">Главная</a></li>
+<li><a href="#activities">Направления</a></li>
+<li><a href="#calendar">Расписание</a></li>
+<li><a href="#booking">Запись</a></li>
+<li><a href="#contact">Контакты</a></li>
+</ul>
+</div>
+<!-- Контакты -->
+<div class="footer-column">
+<h3>Контакты</h3>
+<div class="contact-info">
+<div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Большой камень, ул. Академика Курчатова, 36</span></div>
+<div class="contact-item"><i class="fas fa-phone"></i><span>+7 924 331-96-89</span></div>
+<div class="contact-item"><i class="fas fa-envelope"></i><span>jul4ik.1996@mail.ru</span></div>
+<div class="contact-item"><i class="fab fa-vk"></i><span>VK: ArtFocus Мастерская</span></div>
+</div>
+</div>
+</div>
+<div class="copyright">&copy; 2025 ArtFocus. Все права защищены.</div>
+</div>
+</footer>
+
+<!-- Скрипты -->
+<script>
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+});
+const mobileLinks = document.querySelectorAll('.mobile-menu a');
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+    });
+});
+
+// Данные мероприятий мастерской Деда Мороза
+const events = [
+    {
+        id: 1,
+        title: "Открытка скрапбукинг",
+        date: "10 декабря 2025",
+        time: "15:00",
+        duration: "2 часа",
+        type: "Мастер-класс",
+        price: "700 ₽",
+        description: "Создание новогодней открытки в технике скрапбукинг. Все материалы предоставляются.",
+        spots: 10
+    },
+    {
+        id: 2,
+        title: "Декупаж елочной игрушки на деревянной основе",
+        date: "10 декабря 2025",
+        time: "17:00",
+        duration: "2 часа",
+        type: "Мастер-класс",
+        price: "700 ₽",
+        description: "Создание уникальной елочной игрушки в технике декупаж.",
+        spots: 8
+    },
+    {
+        id: 3,
+        title: "Роспись столовых свечей",
+        date: "10 декабря 2025",
+        time: "19:00",
+        duration: "2 часа",
+        type: "Мастер-класс",
+        price: "1000 ₽",
+        description: "Декорирование праздничных свечей для новогоднего стола.",
+        spots: 6
+    },
+    {
+        id: 4,
+        title: "Декупаж елочной игрушки шар",
+        date: "11 декабря 2025",
+        time: "14:00",
+        duration: "2 часа",
+        type: "Мастер-класс",
+        price: "1100 ₽",
+        description: "Создание стеклянного елочного шара в технике декупаж.",
+        spots: 8
+    },
+    {
+        id: 5,
+        title: "Картина из страз и акрила",
+        date: "12 декабря 2025",
+        time: "17:00",
+        duration: "2.5 часа",
+        type: "Мастер-класс",
+        price: "1000 ₽",
+        description: "Создание сверкающей новогодней картины с использованием страз.",
+        spots: 10
+    },
+    {
+        id: 6,
+        title: "Елочная игрушка макраме",
+        date: "13 декабря 2025",
+        time: "10:00",
+        duration: "2 часа",
+        type: "Мастер-класс",
+        price: "700 ₽",
+        description: "Плетение новогодней игрушки в технике макраме.",
+        spots: 8
+    },
+    {
+        id: 7,
+        title: "Новогодние венки с игристым для взрослых",
+        date: "14 декабря 2025",
+        time: "18:30",
+        duration: "3 часа",
+        type: "Мастер-класс",
+        price: "3500 ₽",
+        description: "Создание праздничного венка с бокалом игристого напитка.",
+        spots: 12
+    },
+    {
+        id: 8,
+        title: "Ночник из ниток",
+        date: "16 декабря 2025",
+        time: "15:00",
+        duration: "2 часа",
+        type: "Мастер-класс",
+        price: "1100 ₽",
+        description: "Создание уютного новогоднего ночника из ниток.",
+        spots: 8
+    },
+    {
+        id: 9,
+        title: "Новогодняя композиция на стол",
+        date: "17 декабря 2025",
+        time: "17:00",
+        duration: "2 часа",
+        type: "Мастер-класс",
+        price: "1000 ₽",
+        description: "Создание праздничной композиции для новогоднего стола.",
+        spots: 10
+    },
+    {
+        id: 10,
+        title: "Свеча в банке",
+        date: "17 декабря 2025",
+        time: "19:00",
+        duration: "2 часа",
+        type: "Мастер-класс",
+        price: "1200 ₽",
+        description: "Создание ароматической свечи в стеклянной банке.",
+        spots: 8
+    }
+];
+
+const eventsContainer = document.getElementById('eventsContainer');
+
+function renderEvents() {
+    eventsContainer.innerHTML = '';
+    events.forEach(event => {
+        const card = document.createElement('div');
+        card.className = 'event-card';
+        card.innerHTML = `
+            <div class="event-date"><i class="far fa-calendar-alt"></i> ${event.date}</div>
+            <h4 class="event-title">${event.title}</h4>
+            <p>${event.description}</p>
+            <div class="event-info">
+                <div class="event-info-row">
+                    <span><i class="far fa-clock"></i> ${event.time}</span>
+                    <span><i class="fas fa-hourglass-half"></i> ${event.duration}</span>
+                </div>
+                <div class="event-info-row">
+                    <span><i class="fas fa-users"></i> ${event.spots} мест</span>
+                    <span><i class="fas fa-tag"></i> ${event.type}</span>
+                </div>
+            </div>
+            <div class="event-action">
+                <div class="event-price">${event.price}</div>
+                <button class="book-btn book-btn-vk" data-id="${event.id}"><i class="fab fa-vk"></i> Записаться</button>
+            </div>
+        `;
+        eventsContainer.appendChild(card);
+    });
+    document.querySelectorAll('.book-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            openBookingModal(parseInt(btn.dataset.id));
+        });
+    });
+}
+
+// Modal
+const bookingModal = document.getElementById('bookingModal');
+const closeModalBtn = document.getElementById('closeModal');
+const form = document.getElementById('bookingForm');
+const eventNameInput = document.getElementById('eventName');
+let selectedEventId = null;
+
+function openBookingModal(id) {
+    selectedEventId = id;
+    const event = events.find(e => e.id === id);
+    if (event) {
+        eventNameInput.value = event.title + " (" + event.date + ", " + event.time + ")";
+        bookingModal.style.display = 'flex';
+    }
+}
+
+function closeBookingModal() {
+    bookingModal.style.display = 'none';
+    selectedEventId = null;
+    form.reset();
+}
+
+closeModalBtn.onclick = closeBookingModal;
+window.onclick = (e) => {
+    if (e.target === bookingModal) closeBookingModal();
+};
+
+form.onsubmit = (e) => {
+    e.preventDefault();
+    const event = events.find(e => e.id === selectedEventId);
+    const name = document.getElementById('userName').value;
+    const phone = document.getElementById('userPhone').value;
+    const participants = document.getElementById('participants').value;
+    if (event && name && phone) {
+        const message = encodeURIComponent(
+            `Здравствуйте! Хочу записаться на мастер-класс:\n\n` +
+            `🎄 ${event.title}\n` +
+            `📅 Дата: ${event.date}\n` +
+            `⏰ Время: ${event.time}\n` +
+            `💰 Стоимость: ${event.price}\n` +
+            `👤 Имя: ${name}\n` +
+            `📱 Телефон: ${phone}\n` +
+            `👥 Участников: ${participants}\n\n` +
+            `Пожалуйста, подтвердите мою запись!`
+        );
+        // Открываем VK с предзаполненным сообщением
+        window.open(`https://vk.com/im/channels/-234355538?message=${message}`, '_blank');
+        alert('Сейчас откроется VK. Пожалуйста, отправьте сообщение для подтверждения записи!');
+        closeBookingModal();
+    }
+};
+
+// Навигация месяца (заглушки)
+document.getElementById('prevMonth').onclick = () => alert('Переход к предыдущему месяцу (в демо-версии не реализован)');
+document.getElementById('nextMonth').onclick = () => alert('Переход к следующему месяцу (в демо-версии не реализован)');
+
+// Плавный скролл
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.onclick = (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+        }
+    };
+});
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', () => {
+    renderEvents();
+    
+    // Добавляем случайные поп-арт элементы на страницу
+    const popArtTexts = ["🎄", "🎅", "❄️", "⭐", "🎁", "✨", "🌟", "☃️"];
+    const sections = document.querySelectorAll('.section');
+    
+    sections.forEach(section => {
+        if (Math.random() > 0.5) {
+            const popElement = document.createElement('div');
+            popElement.className = 'pop-art-element';
+            popElement.textContent = popArtTexts[Math.floor(Math.random() * popArtTexts.length)];
+            popElement.style.position = 'absolute';
+            popElement.style.top = Math.random() * 80 + 10 + '%';
+            popElement.style.left = Math.random() * 80 + 10 + '%';
+            popElement.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
+            popElement.style.color = [ 'var(--muted-yellow)', 'var(--soft-yellow)', 'var(--dark-green)', 'var(--accent-red)' ][Math.floor(Math.random() * 4)];
+            popElement.style.fontSize = Math.random() * 1.5 + 1 + 'rem';
+            popElement.style.opacity = '0.6';
+            popElement.style.zIndex = '1';
+            popElement.style.pointerEvents = 'none';
+            popElement.style.textShadow = '2px 2px 0 rgba(0,0,0,0.3)';
+            section.style.position = 'relative';
+            section.appendChild(popElement);
+        }
+    });
+});
+</script>
+</body>
+</html>
+
+photo-1542744095-fcf48d80b0fd?ixlib
